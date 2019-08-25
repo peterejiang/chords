@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+   <head>
+    {% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/app.css') }}"> 
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+
+<div id="current_user">Logged in as: {{username}}</div>
+<div id="to_profile"><a href="profile">My Profile</a></div>
+<div id="logout_button"><a href="logout">Logout</a></div>
+<br>
+<br>
+<br>
+
+  <body>
+  <h1>{% block heading %}{% endblock %}</h1>
+    <div id="content">{% block content %}{% endblock %}</div>
+   </body>
+
+   {% block footer %}
+    <div id="footer">By Bryan Kim (bsk2133) and Peter Jiang (pej2111).</div>
+      {% endblock %}
+
+</html>
+

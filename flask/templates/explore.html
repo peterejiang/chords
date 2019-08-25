@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+{% block title %}Explore{% endblock %}
+{% block heading %}Explore{% endblock %}
+{% block content %}
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/explore.js') }}"></script>
+
+Search for the top playlists and most recent votes by group:
+<br>
+<br>
+<form method="POST" action="/explore">
+    <fieldset id="search">
+        <legend>Search By Group:</legend>
+        University:<br>
+        <select name="university" onChange='show_groups({{ options|tojson|safe }},this)' required />
+            {% for key,value in options.iteritems() %}
+            <option value="{{key}}">{{key}}</option>
+            {% endfor %}
+        </select><br>
+        Group:<br>
+        <select name="group" id="group" required>
+        </select><br>
+        <br>
+        <input type="submit" value="Go">
+    </fieldset>
+</form>
+
+<h2>{{message}}</h2>
+
+<br>
+<hr>
+<br>
+<h2> Results: </h2>
+<br>
+{{group_name}}<br>
+{{university_name}}
+<br>
+<table>
+    <caption>Top Songs</caption>
+    <tr>
+        <th>Ranking</th>
+        <th>Song Name</th>
+        <th>Artist</th> 
+        <th>Year</th>
+        <th>Score</th>
+    </tr>
+    {% for s in top_songs %}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{ s[0] }}</td>
+        <td>{{ s[1] }}</td> 
+        <td>{{ s[2] }}</td>
+        <td>{{ s[3] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<br>
+<br>
+
+<table>
+    <caption>Recent Votes</caption>
+    <tr>
+        <th>Song Name</th>
+        <th>Artist</th> 
+        <th>Vote Time</th>
+        <th>Vote Score</th>    
+    </tr>
+    {% for v in recent_votes %}
+    <tr>
+        <td>{{ v[0] }}</td>
+        <td>{{ v[1] }}</td> 
+        <td>{{ v[2] }}</td>
+        <td>{{ v[3] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<br>
+<br>
+<br>
+
+<hr>
+<br>
+
+<p><a href="/profile">Back to Profile</a></p>
+
+{% endblock %}
+
+
+

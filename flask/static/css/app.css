@@ -1,0 +1,28 @@
+
+#current_user {
+   position:absolute;
+   top:0px;
+   right:10px;
+   font-size: 12pt;
+}
+
+#to_profile {
+   position:absolute;
+   top:15px;
+   right:10px;
+   font-size: 12pt;
+}
+
+#logout_button {
+   position:absolute;
+   top:30px;
+   right:10px;
+   font-size: 12pt;
+}
+ 
+#footer {
+   position:fixed;
+   bottom:5px;
+   right:10px;
+   font-size: 10pt;
+}

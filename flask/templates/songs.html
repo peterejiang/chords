@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block title %}Songs{% endblock %}
+{% block heading %}Songs{% endblock %}
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/songs.js') }}"></script>
+
+<form name="song_form" method="POST" action"/songs">
+
+<input type="hidden" name="date" id="date" required>
+
+<script>
+get_date();
+</script>
+
+<fieldset>
+<legend>What would you like to do?</legend>
+<select id="mode" name="mode" onchange="show_form()" required>
+<option value="vote">Vote on Song</option>
+<option value="play">Play Song</option>
+<option value="add">Add Song</option>
+</select>
+</fieldset>
+
+<fieldset id="vote" style="display: block;">
+<legend>Vote on Song:</legend>
+Song:<br>
+<select name="vote_song">
+{% for n in possible_choose_songs %}
+  <option value="{{n}}">{{n}}</option>
+{% endfor %}
+</select>
+<br>
+<input type="radio" name="score" value="1" required checked> Like<br>
+<input type="radio" name="score" value="-1"> Dislike<br>
+<br>
+<br>
+<input type="submit" value="Submit">
+</fieldset>
+
+<fieldset id="play" style="display: none;">
+<legend>Play Song:</legend>
+Song:<br>
+<select name="play_song">
+{% for n in possible_choose_songs %}
+  <option value="{{n}}">{{n}}</option>
+{% endfor %}
+</select>
+<br>
+<br>
+<input type="submit" value="Submit">
+</fieldset>
+
+<fieldset id="add" style="display: none;">
+<legend>Add Song:</legend>
+Song Title:<br>
+<input type="text" name="stitle"><br> 
+Song Artist:<br>
+<input type="text" name="sartist"><br> 
+Song Year:<br>
+<input type="number" name="syear"><br>
+<br>
+<input type="submit" value:"Submit">
+</fieldset>
+
+</form>
+
+<h2>{{message}}</h2>
+
+<p><a href="/profile">Back to Profile</a></p>
+
+{% endblock %}
+
+

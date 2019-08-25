@@ -1,6 +1,7 @@
+
 {% extends "layout.html" %}
-{% block title %}Login{% endblock %}
-{% block heading %}Login{% endblock %}
+{% block title %}Welcome to Chords{% endblock %}
+{% block heading %}Welcome to Chords{% endblock %}
 {% block content %}
 
 <style>
@@ -31,41 +32,24 @@ hr {
 </style>
 
 <hr>
-Login to access your homepage.
+<br>
+<b>
+A music webapp implemented with a postgreSQL database backend.
+</b>
+<br>By Bryan Kim and Peter Jiang
+<br>
 <br>
 <hr>
 <br>
 
-<form method="POST" action="/login">
-<p>
-Email:<br>
-<input type="email" name="email" required><br> 
-Password:<br>
-<input type="password" name="password" required><br> 
-<br>
-<input type="submit" value="Login">
-</p>
-</form>
-
-<br>
-<hr>
-<br>
-
-<h2>{{message}}</h2>
-
-<br>
-<hr>
-<br>
 
 <div>
     <div class="boxl">
-        <h3><a href="register">Register</a></h3>
+        <h3><a href="login">Login</a></h3>
     </div>
     <div class="boxr">
-        <h3><a href="/">Back to Home</a></h3>
+        <h3><a href="register">Register</a></h3>
     </div>
 </div>
-
 {% endblock %}
-
 

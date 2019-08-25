@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
-{% block title %}Login{% endblock %}
-{% block heading %}Login{% endblock %}
+{% block title %}Register{% endblock %}
+{% block heading %}Register{% endblock %}
 {% block content %}
+
 
 <style>
 .boxl {
@@ -31,19 +32,37 @@ hr {
 </style>
 
 <hr>
-Login to access your homepage.
+Sign up for a new account
 <br>
 <hr>
 <br>
 
-<form method="POST" action="/login">
+
+
+
+<form method="POST" action="/register">
 <p>
-Email:<br>
+Email: (max 30 char)<br>
 <input type="email" name="email" required><br> 
-Password:<br>
+Password: (max 20 char)<br>
 <input type="password" name="password" required><br> 
+Name: (max 30 char)<br>
+<input type="text" name="name" required><br>
+Gender:<br>
+<select name="gender" required>
+  <option value="M">Male</option>
+  <option value="F">Female</option>
+  <option value="O">Other</option>
+</select><br>
+University:<br>
+<select name="university" required>
+{% for n in universities %}
+  <option value="{{n}}">{{n}}</option>
+{% endfor %}
+</select>
 <br>
-<input type="submit" value="Login">
+<br>
+<input type="submit" value="Register">
 </p>
 </form>
 
@@ -59,7 +78,7 @@ Password:<br>
 
 <div>
     <div class="boxl">
-        <h3><a href="register">Register</a></h3>
+        <h3><a href="login">Back to Login</a></h3>
     </div>
     <div class="boxr">
         <h3><a href="/">Back to Home</a></h3>
@@ -67,5 +86,6 @@ Password:<br>
 </div>
 
 {% endblock %}
+
 
 

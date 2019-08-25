@@ -1,0 +1,143 @@
+{% extends "layout.html" %}
+{% block title %}Groups{% endblock %}
+{% block heading %}Groups{% endblock %}
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/groups.js') }}"></script>
+
+<form name="group_form" method="POST" action="/groups">
+
+<input type="hidden" name="date" id="date" required>
+
+<script>
+get_date();
+</script>
+
+<fieldset>
+<legend>What would you like to do?</legend>
+<select id="mode" name="mode" onchange="show_form()" required>
+<option value="join">Join Group</option>
+<option value="leave">Leave Group</option>
+<option value="add">Add New Group</option>
+</select>
+</fieldset>
+
+<fieldset id="join" style="display: block;">
+<legend>Join Group:</legend>
+Group:<br>
+<select name="join_group">
+{% for n in possible_join_groups %}
+  <option value="{{n}}">{{n}}</option>
+{% endfor %}
+</select><br>
+Role:<br>
+<select name="join_group_role" required>
+  <option value="member">Member</option>
+  <option value="leader">Leader</option> 
+</select>
+<br>
+<br>
+<input type="submit" value="Submit">
+</fieldset>
+
+<fieldset id="leave" style="display: none;">
+<legend>Leave Group:</legend>
+Group:<br>
+<select name="leave_group">
+{% for n in possible_leave_groups %}
+  <option value="{{n}}">{{n}}</option>
+{% endfor %}
+</select>
+<br>
+<br>
+<input type="submit" value="Submit">
+</fieldset>
+
+<fieldset id="add" style="display: none;">
+<legend>Add New Group:</legend>
+Group Type:<br>
+<select name="group_type" id="group_type" onChange='show_add_form()'>
+  <option value="club">Club/Organization</option>
+  <option value="major">Major</option>
+  <option value="residence">Residence</option>
+  <option value="class">Graduating Class/Year</option>
+  <option value="other">Other/None of the Above</option>
+</select><br>
+
+<fieldset id="club" style="display: none;">
+<legend>Enter Club Info:</legend>
+Club Name:<br>
+<input type="text" name="club_name">
+<br>
+Club Type:<br>
+<select name="club_type" id="club_type" required>
+  <option value="academic">Academic</option>
+  <option value="culture">Cultural</option>
+  <option value="greek">Greek Life</option>
+  <option value="art">Fine Arts/Performance</option>
+  <option value="service">Service/Charitable</option>
+  <option value="political">Political</option>
+  <option value="other">Other</option>
+</select><br>
+</fieldset>
+
+
+<fieldset id="major" style="display: none;">
+<legend>Enter Major Info:</legend>
+Major Name:<br>
+<input type="text" name="major_name">
+<br>
+Major Type:<br>
+<select name="major_type" id="major_type" required>
+  <option value="natural_science">Natural Sciences, Mathematics, and Computer Science</option>
+  <option value="engineering">Engineering</option>
+  <option value="social_science">Social Sciences</option>
+  <option value="humanities">Humanities</option>
+  <option value="art">Fine Arts</option>
+  <option value="other">Other</option>
+</select><br>
+</fieldset>
+
+<fieldset id="residence" style="display: none;">
+<legend>Enter Residence Info:</legend>
+Residence Name:<br>
+<input type="text" name="residence_name">
+<br>
+Residence Type:<br>
+<select name="residence_type" id="residence_type" required>
+    <option value="dormitory">Dormitory</option>
+  <option value="greek">Fraternity/Sorority House</option>
+  <option value="off-campus">Off-Campus Housing</option>
+  <option value="special">Special Interest Housing</option>
+  <option value="other">Other</option>
+</select><br>
+</fieldset>
+
+<fieldset id="class" style="display: none;">
+<legend>Enter Class Info:</legend>
+Class Year:<br>
+<input type="number" name="class_year">
+<br>
+</fieldset>
+
+<fieldset id="other" style="display: none;">
+<legend>Enter Group Info:</legend>
+Group Name:<br>
+<input type="text" name="group_name">
+<br>
+</fieldset>
+
+<br>
+<br>
+<input type="submit" value="Submit" id="submit2" style="display: none;">
+</fieldset>
+
+</form>
+
+<h2>{{message}}</h2>
+
+<p><a href="/profile">Back to Profile</a></p>
+
+{% endblock %}
+
+

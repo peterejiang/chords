@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block heading %}Profile{% endblock %}
+{% block content %}
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.box {
+    float: left;
+    width: 30.5%;
+    text-align: center;
+    border: 3px solid ;
+    padding: 10px;
+}
+
+
+hr {
+    clear:both;
+}
+
+</style>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+<br>
+<hr>
+
+<h2>Welcome to your profile, <ins>{{session['email']}}</ins>.</h2>
+
+<hr>
+
+<div>
+    <div class="box">
+        <h2><p><a href="songs">Vote, Play, or Add Songs</a></p></h2>
+    </div>
+    <div class="box">
+        <h2><p><a href="explore">Explore Other Groups</a></p></h2>
+    </div>
+    <div class="box"> 
+        <h2><p><a href="groups">Manage Groups</a></p></h2>
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<hr>
+<br>
+
+Check out the top songs and recent votes in your groups:
+<br>
+<br>
+<form method="POST" action="/profile">
+    <fieldset id="search">
+        <legend>View By Group:</legend>
+        Group:<br>
+        <select name="groups" onChange='show_data({{ all_groups_data|tojson|safe }},this)' required />
+            {% for key,value in all_groups_data.iteritems() %}
+            <option value="{{key}}">{{key}}</option>
+            {% endfor %}
+        </select><br>
+    </fieldset>
+</form>
+<br>
+{% endblock %}
+
